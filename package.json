@@ -1,0 +1,28 @@
+{
+  "name": "node-ga-updater",
+  "version": "0.0.1",
+  "description": "Update GitHub Actions",
+  "scripts": {
+    "lint": "eslint ./**/**.js",
+    "pkg:ok": "npx pkg-ok"
+  },
+  "main": "./bin/node-ga-updater.js",
+  "bin": {
+    "node-ga-updater": "./bin/node-ga-updater.mjs"
+  },
+  "keywords": [],
+  "author": "PierreDemailly <pierredemailly.pro@gmail.com>",
+  "license": "MIT",
+  "type": "module",
+  "devDependencies": {
+    "@nodesecure/eslint-config": "^1.7.0",
+    "eslint": "^8.43.0",
+    "pkg-ok": "^3.0.0"
+  },
+  "dependencies": {
+    "@myunisoft/httpie": "^1.11.0",
+    "@nodesecure/fs-walk": "^1.0.0",
+    "@topcli/spinner": "^2.0.0",
+    "dotenv": "^16.3.1"
+  }
+}
