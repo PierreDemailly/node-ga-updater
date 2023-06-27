@@ -6,6 +6,10 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/) and this p
 
 ## [Unreleased]
 
+### Added
+
+- Handle any yml syntax
+
 ## [0.0.1] - 2023-06-27
 
 ### Added
