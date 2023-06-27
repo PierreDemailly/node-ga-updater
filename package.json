@@ -1,6 +1,6 @@
 {
   "name": "node-ga-updater",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "Update GitHub Actions",
   "scripts": {
     "lint": "eslint ./**/**.js",
