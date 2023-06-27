@@ -6,11 +6,13 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/) and this p
 
 ## [Unreleased]
 
+## [0.0.3] - 2023-06-27
+
 ### Added
 
 - Handle any yml syntax
 
-## [0.0.1] - 2023-06-27
+## [0.0.2] - 2023-06-27
 
 ### Added
 
