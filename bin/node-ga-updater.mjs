@@ -51,7 +51,7 @@ for (const [, absolutePath] of ymlFiles) {
 
     const linesToUpdate = lines
       .map((line, index) => [line, index])
-      .filter(([line]) => line.trimStart().startsWith(`uses: ${ga}`));
+      .filter(([line]) => line.trimStart().replace("- ", "").startsWith(`uses: ${ga}`));
 
     for (const [lineToUpdate, index] of linesToUpdate) {
       const [, version] = lineToUpdate.split("@");
