@@ -17,6 +17,14 @@ Update your GitHub Actions.
 npx node-ga-updater
 ```
 
+## Usage
+
+Use `--update-all` or `-u` (alias) to skip prompts and update all by default.
+
+```bash
+npx node-ga-updater -u
+```
+
 ## Authentication
 
 You can authenticate yourself to the GitHub API if you wont be annoyed with **Rate Limits**.

@@ -12,6 +12,7 @@ import { request, Headers } from "@myunisoft/httpie";
 import { walkSync } from "@nodesecure/fs-walk";
 import kleur from "kleur";
 import { confirm } from "@topcli/prompts";
+import parseArgs from "minimist";
 
 // Import Internal Dependencies
 import { parseGitHubActions } from "../src/parseGitHubActions.mjs";
@@ -25,6 +26,7 @@ const kRequestOptions = {
   authorization: process.env.GITHUB_TOKEN
 };
 const kFetchedTags = new Map();
+const kArgv = parseArgs(process.argv.slice(2));
 
 async function getLastTagSha(repo) {
   const requestUrl = new URL(`/repos/${repo}/tags`, kGitHubApiUrl);
@@ -84,7 +86,8 @@ for (const [ga, usage] of projectGitHubActions) {
     continue;
   }
 
-  const confirmUpdate = await confirm(`Update ${ga} ?`, { initial: true });
+  const defaultUpdate = kArgv.u || kArgv["update-all"];
+  const confirmUpdate = defaultUpdate || await confirm(`Update ${ga} ?`, { initial: true });
 
   if (confirmUpdate) {
     for (const update of updates) {
