@@ -19,7 +19,7 @@ npx node-ga-updater
 
 ## Usage
 
-Use `--update-all`or `-u` (alias) to skip prompts and update all by default.
+Use `--update-all` or `-u` (alias) to skip prompts and update all by default.
 
 ```bash
 npx node-ga-updater -u
