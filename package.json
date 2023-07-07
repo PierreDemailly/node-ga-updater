@@ -6,7 +6,7 @@
     "lint": "eslint ./**/**.js",
     "pkg:ok": "npx pkg-ok"
   },
-  "main": "./bin/node-ga-updater.js",
+  "main": "./bin/node-ga-updater.mjs",
   "bin": {
     "node-ga-updater": "./bin/node-ga-updater.mjs"
   },
@@ -22,7 +22,7 @@
   "dependencies": {
     "@myunisoft/httpie": "^1.11.0",
     "@nodesecure/fs-walk": "^1.0.0",
-    "@topcli/spinner": "^2.0.0",
+    "@topcli/prompts": "^1.1.0",
     "dotenv": "^16.3.1"
   }
 }

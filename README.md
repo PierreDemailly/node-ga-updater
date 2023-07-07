@@ -17,20 +17,6 @@ Update your GitHub Actions.
 npx node-ga-updater
 ```
 
-Or you can pass a list of GA you want to be updated.
-
-```bash
-npx node-ga-updater step-security/harden-runner actions/checkout
-```
-
-**Default GitHub Actions List:**
-- github/codeql-action
-- actions/checkout
-- actions/upload-artifact
-- step-security/harden-runner
-- ossf/scorecard-action
-
-
 ## Authentication
 
 You can authenticate yourself to the GitHub API if you wont be annoyed with **Rate Limits**.

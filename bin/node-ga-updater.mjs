@@ -5,22 +5,18 @@ import "dotenv/config";
 // Import Node.js Dependencies
 import fs from "node:fs";
 import path from "node:path";
+import os from "node:os";
 
 // Import Third-party Dependencies
 import { request, Headers } from "@myunisoft/httpie";
 import { walkSync } from "@nodesecure/fs-walk";
-import { Spinner } from "@topcli/spinner";
 import kleur from "kleur";
+import { confirm } from "@topcli/prompts";
+
+// Import Internal Dependencies
+import { parseGitHubActions } from "../src/parseGitHubActions.mjs";
 
 // CONSTANTS
-const kGivenGAs = process.argv.slice(2);
-const kDefaultGAs = [
-  "github/codeql-action",
-  "actions/checkout",
-  "actions/upload-artifact",
-  "step-security/harden-runner",
-  "ossf/scorecard-action"
-];
 const kGitHubApiUrl = "https://api.github.com";
 const kRequestOptions = {
   headers: new Headers({
@@ -28,44 +24,84 @@ const kRequestOptions = {
   }),
   authorization: process.env.GITHUB_TOKEN
 };
+const kFetchedTags = new Map();
 
 async function getLastTagSha(repo) {
   const requestUrl = new URL(`/repos/${repo}/tags`, kGitHubApiUrl);
   const { data } = await request("GET", requestUrl, kRequestOptions);
 
+  kFetchedTags.set(repo, data);
+
   return [data[0].name, data[0].commit.sha];
 }
 
-const spinner = new Spinner({ name: "line" }).start("Updating GitHub Actions");
-
-const ymlFiles = [...walkSync(path.join(process.cwd(), "/.github/workflows"), { extensions: new Set([".yml"]) })];
-
-const gas = kGivenGAs.length > 0 ? kGivenGAs : kDefaultGAs;
-
-for (const [, absolutePath] of ymlFiles) {
+const workflowsFilesPath = [...walkSync(path.join(process.cwd(), "/.github/workflows"), { extensions: new Set([".yml"]) })];
+const workflowsFilesLines = workflowsFilesPath.map(([, absolutePath]) => {
   const content = fs.readFileSync(absolutePath, "utf8");
-  const lines = content.split("\n");
+  const lines = content.split(/\r?\n/);
 
-  for (const ga of gas) {
-    const [name, sha] = await getLastTagSha(ga);
+  return [absolutePath, lines];
+});
 
-    const linesToUpdate = lines
-      .map((line, index) => [line, index])
-      .filter(([line]) => {
-        const withoutWhiteSpace = line.replace(/\s/g, "");
+hr();
 
-        return withoutWhiteSpace.startsWith(`uses:${ga}`) || withoutWhiteSpace.startsWith(`-uses:${ga}`);
-      });
+const projectGitHubActions = parseGitHubActions(workflowsFilesLines);
 
-    for (const [lineToUpdate, index] of linesToUpdate) {
-      const [, version] = lineToUpdate.split("@");
-      const newLine = `${lineToUpdate.replace(version, sha)} # ${name}`;
+for (const [ga, usage] of projectGitHubActions) {
+  // format foo/bar/baz -> foo/bar
+  const repository = ga.split("/").slice(0, 2).join("/");
+  const [name, sha] = await getLastTagSha(repository);
+  const updates = [];
 
-      lines[index] = newLine;
+  for (const { absolutePath, line, index, version, pinned } of usage) {
+    const [, version] = line.split("@");
+    const newLine = `${line.replace(version, sha)} # ${name}`;
+
+    if (line === newLine) {
+      continue;
     }
 
-    fs.writeFileSync(absolutePath, lines.join("\n"));
+    let missingLineVersion;
+
+    if (pinned && !line.includes("#")) {
+      const tag = kFetchedTags.get(repository).find((tag) => tag.commit.sha === version);
+      missingLineVersion = tag.name;
+    }
+    console.log(kleur.yellow().bold(absolutePath));
+    console.log(`${kleur.red().bold(`-\t${line}`)}${missingLineVersion ? kleur.white().bold(` (${missingLineVersion})`) : ""}`);
+    console.log(kleur.green().bold(`+\t${newLine}`));
+    // skip line
+    console.log();
+
+    updates.push({ absolutePath, index, newLine });
+    // const content = fs.readFileSy
   }
+
+  if (updates.length === 0) {
+    console.log(kleur.green().bold(`${ga} is up-to-date!`));
+    hr();
+
+    continue;
+  }
+
+  const confirmUpdate = await confirm(`Update ${ga} ?`, { initial: true });
+
+  if (confirmUpdate) {
+    for (const update of updates) {
+      const workflowLines = workflowsFilesLines.find(([absolutePath]) => absolutePath === update.absolutePath)[1];
+      workflowLines[update.index] = update.newLine;
+
+      fs.writeFileSync(update.absolutePath, workflowLines.join(os.EOL));
+    }
+  }
+
+  hr();
 }
 
-spinner.succeed(`GitHub Actions updated (${gas.join(", ")})`);
+console.log("Done!");
+
+function hr() {
+  console.log();
+  console.log(kleur.grey("-".repeat(process.stdout.columns)));
+  console.log();
+}
