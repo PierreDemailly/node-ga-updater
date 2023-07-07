@@ -6,6 +6,8 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/) and this p
 
 ## [Unreleased]
 
+## [1.0.0] - 2023-07-08
+
 ### Added
 
 - Interactively update any GitHub Actions found in workflows, there is no more default action or custom action
