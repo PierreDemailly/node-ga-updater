@@ -8,8 +8,6 @@ Update your GitHub Actions.
 
 > **Note** This tool uses pinned version only for security purpose.
 
-![Screenshot](./public/screenshot.png)
-
 ## Requirements
 - [Node.js](https://nodejs.org/en/) v16 or higher
 
