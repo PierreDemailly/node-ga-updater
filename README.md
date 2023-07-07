@@ -8,6 +8,8 @@ Update your GitHub Actions.
 
 > **Note** This tool uses pinned version only for security purpose.
 
+![Screenshot](./public/screenshot.png)
+
 ## Requirements
 - [Node.js](https://nodejs.org/en/) v16 or higher
 
@@ -16,20 +18,6 @@ Update your GitHub Actions.
 ```bash
 npx node-ga-updater
 ```
-
-Or you can pass a list of GA you want to be updated.
-
-```bash
-npx node-ga-updater step-security/harden-runner actions/checkout
-```
-
-**Default GitHub Actions List:**
-- github/codeql-action
-- actions/checkout
-- actions/upload-artifact
-- step-security/harden-runner
-- ossf/scorecard-action
-
 
 ## Authentication
 
