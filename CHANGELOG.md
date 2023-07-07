@@ -9,6 +9,7 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/) and this p
 ### Added
 
 - Interactively update any GitHub Actions found in workflows, there is no more default action or custom action
+- Update all with `--update-all` flag (alias `-u`)
 
 ## [0.0.3] - 2023-06-27
 
