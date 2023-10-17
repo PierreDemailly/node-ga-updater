@@ -6,6 +6,8 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/) and this p
 
 ## [Unreleased]
 
+## [1.1.0] - 2023-10-18
+
 ### Added
 
 - Choose custom path with `--path` flag (alias `-p`)
