@@ -8,7 +8,7 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/) and this p
 
 ### Added
 
-- Choose custom path with `--path` flag (alias `-p``)
+- Choose custom path with `--path` flag (alias `-p`)
 
 ## [1.0.0] - 2023-07-08
 
