@@ -26,7 +26,11 @@ const kRequestOptions = {
   authorization: process.env.GITHUB_TOKEN
 };
 const kFetchedTags = new Map();
-const kArgv = parseArgs(process.argv.slice(2));
+const kArgv = parseArgs(process.argv.slice(2), {
+  default: {
+    p: "/.github/workflows"
+  }
+});
 
 async function getLastTagSha(repo) {
   const requestUrl = new URL(`/repos/${repo}/tags`, kGitHubApiUrl);
@@ -37,7 +41,12 @@ async function getLastTagSha(repo) {
   return [data[0].name, data[0].commit.sha];
 }
 
-const workflowsFilesPath = [...walkSync(path.join(process.cwd(), "/.github/workflows"), { extensions: new Set([".yml"]) })];
+const workflowsPath = kArgv.path ?? kArgv.p;
+const workflowsFilesPath = [
+  ...walkSync(path.join(process.cwd(), workflowsPath), {
+    extensions: new Set([".yml"])
+  })
+];
 const workflowsFilesLines = workflowsFilesPath.map(([, absolutePath]) => {
   const content = fs.readFileSync(absolutePath, "utf8");
   const lines = content.split(/\r?\n/);
