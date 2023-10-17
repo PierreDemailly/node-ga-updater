@@ -42,7 +42,11 @@ async function getLastTagSha(repo) {
 }
 
 const workflowsPath = kArgv.path ?? kArgv.p;
-const workflowsFilesPath = [...walkSync(path.join(process.cwd(), workflowsPath), { extensions: new Set([".yml"]) })];
+const workflowsFilesPath = [
+  ...walkSync(path.join(process.cwd(), workflowsPath), {
+    extensions: new Set([".yml"])
+  })
+];
 const workflowsFilesLines = workflowsFilesPath.map(([, absolutePath]) => {
   const content = fs.readFileSync(absolutePath, "utf8");
   const lines = content.split(/\r?\n/);
