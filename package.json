@@ -15,15 +15,15 @@
   "license": "MIT",
   "type": "module",
   "devDependencies": {
-    "@nodesecure/eslint-config": "^1.7.0",
-    "@release-it/keep-a-changelog": "^3.1.0",
-    "eslint": "^8.43.0",
+    "@nodesecure/eslint-config": "^1.8.0",
+    "@release-it/keep-a-changelog": "^4.0.0",
+    "eslint": "^8.51.0",
     "pkg-ok": "^3.0.0"
   },
   "dependencies": {
-    "@myunisoft/httpie": "^1.11.0",
+    "@myunisoft/httpie": "^2.0.3",
     "@nodesecure/fs-walk": "^1.0.0",
-    "@topcli/prompts": "^1.1.0",
+    "@topcli/prompts": "^1.5.0",
     "dotenv": "^16.3.1",
     "minimist": "^1.2.8"
   }
