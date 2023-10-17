@@ -25,6 +25,8 @@ Use `--update-all` or `-u` (alias) to skip prompts and update all by default.
 npx node-ga-updater -u
 ```
 
+Use `--path` or `p` (alias) for custom path. Default `.github/workflows`.
+
 ## Authentication
 
 You can authenticate yourself to the GitHub API if you wont be annoyed with **Rate Limits**.
