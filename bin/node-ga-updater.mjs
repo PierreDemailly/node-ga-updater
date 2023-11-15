@@ -31,6 +31,9 @@ const kArgv = parseArgs(process.argv.slice(2), {
     p: "/.github/workflows"
   }
 });
+if (kArgv.s || kArgv.silent) {
+  console.log = () => void 0;
+}
 
 async function getLastTagSha(repo) {
   const requestUrl = new URL(`/repos/${repo}/tags`, kGitHubApiUrl);
