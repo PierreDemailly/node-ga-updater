@@ -9,7 +9,7 @@ Update your GitHub Actions.
 > **Note** This tool uses pinned version only for security purpose.
 
 ## Requirements
-- [Node.js](https://nodejs.org/en/) v16 or higher
+- [Node.js](https://nodejs.org/en/) v18 or higher
 
 ## Getting Started
 
@@ -25,7 +25,9 @@ Use `--update-all` or `-u` (alias) to skip prompts and update all by default.
 npx node-ga-updater -u
 ```
 
-Use `--path` or `p` (alias) for custom path. Default `.github/workflows`.
+Use `--path` or `-p` (alias) for custom path. Default `.github/workflows`.
+
+Use `--silent` or `-s` (alias) to skip stdout logs.
 
 ## Authentication
 
