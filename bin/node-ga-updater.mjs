@@ -5,14 +5,14 @@ import "dotenv/config";
 // Import Node.js Dependencies
 import fs from "node:fs";
 import path from "node:path";
-import os from "node:os";
+import { parseArgs } from "node:util";
 
 // Import Third-party Dependencies
 import { request, Headers } from "@myunisoft/httpie";
 import { walkSync } from "@nodesecure/fs-walk";
 import kleur from "kleur";
 import { confirm } from "@topcli/prompts";
-import parseArgs from "minimist";
+import * as git from "@pierred/node-git";
 
 // Import Internal Dependencies
 import { parseGitHubActions } from "../src/parseGitHubActions.mjs";
@@ -26,9 +26,29 @@ const kRequestOptions = {
   authorization: process.env.GITHUB_TOKEN
 };
 const kFetchedTags = new Map();
-const kArgv = parseArgs(process.argv.slice(2), {
-  default: {
-    p: "/.github/workflows"
+const { values: kArgv } = parseArgs({
+  args: process.argv.slice(2),
+  options: {
+    path: {
+      type: "string",
+      short: "p",
+      default: "/.github/workflows"
+    },
+    silent: {
+      type: "boolean",
+      short: "s",
+      default: false
+    },
+    commit: {
+      type: "boolean",
+      short: "c",
+      default: false
+    },
+    message: {
+      type: "string",
+      short: "m",
+      default: "chore: update GitHub Actions"
+    }
   }
 });
 if (kArgv.s || kArgv.silent) {
@@ -111,6 +131,11 @@ for (const [ga, usage] of projectGitHubActions) {
   }
 
   hr();
+}
+
+if (kArgv.commit) {
+  await git.indexAllCurrentDirectory();
+  await git.commit(kArgv.message);
 }
 
 console.log("Done!");

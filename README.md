@@ -29,6 +29,13 @@ Use `--path` or `-p` (alias) for custom path. Default `.github/workflows`.
 
 Use `--silent` or `-s` (alias) to skip stdout logs.
 
+Use `--commit` or `-c` (alias) to commit after initialisation. Default `false`.
+
+Use `--message` or `-m` (alias) to provide custom commit message when `--commit` is thruthy. Default `chore: update GitHub Actions`
+
+> [!TIP]
+> You can stack short flags (when no flag argument), for instance `-scm "foo"` is equivalent to `-s -c -m "foo"`.
+
 ## Authentication
 
 You can authenticate yourself to the GitHub API if you wont be annoyed with **Rate Limits**.
