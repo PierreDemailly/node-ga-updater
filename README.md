@@ -66,6 +66,7 @@ Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/d
   <tbody>
     <tr>
       <td align="center" valign="top" width="14.28%"><a href="https://github.com/PierreDemailly"><img src="https://avatars.githubusercontent.com/u/39910767?v=4?s=80" width="80px;" alt="PierreD"/><br /><sub><b>PierreD</b></sub></a><br /><a href="https://github.com/PierreDemailly/node-ga-updater/commits?author=PierreDemailly" title="Code">💻</a> <a href="https://github.com/PierreDemailly/node-ga-updater/commits?author=PierreDemailly" title="Documentation">📖</a></td>
+      <td align="center" valign="top" width="14.28%"><a href="https://github.com/fabnguess"><img src="https://avatars.githubusercontent.com/u/72697416?v=4?s=80" width="80px;" alt="Kouadio Fabrice Nguessan"/><br /><sub><b>Kouadio Fabrice Nguessan</b></sub></a><br /><a href="https://github.com/PierreDemailly/node-ga-updater/commits?author=fabnguess" title="Code">💻</a> <a href="https://github.com/PierreDemailly/node-ga-updater/commits?author=fabnguess" title="Documentation">📖</a></td>
     </tr>
   </tbody>
 </table>
