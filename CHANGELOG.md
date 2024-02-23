@@ -6,6 +6,8 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/) and this p
 
 ## [Unreleased]
 
+## [1.2.0] - 2024-02-23
+
 ### Added
 
 - Commit after update with `--commit` (alias `-s`). Use a custom commit message with `--message` (alias `-m`), default *chore: update GitHub Actions*.
