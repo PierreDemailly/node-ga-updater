@@ -6,6 +6,11 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/) and this p
 
 ## [Unreleased]
 
+### Added
+
+- Commit after update with `--commit` (alias `-s`). Use a custom commit message with `--message` (alias `-m`), default *chore: update GitHub Actions*.
+- Use stdout logs with `--silent` (alias `-s`)
+
 ## [1.1.0] - 2023-10-18
 
 ### Added
