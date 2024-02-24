@@ -6,6 +6,10 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/) and this p
 
 ## [Unreleased]
 
+### Fixed
+
+- Added missing `node:os` import
+
 ## [1.2.0] - 2024-02-23
 
 ### Added

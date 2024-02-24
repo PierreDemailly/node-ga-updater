@@ -6,6 +6,7 @@ import "dotenv/config";
 import fs from "node:fs";
 import path from "node:path";
 import { parseArgs } from "node:util";
+import os from "node:os";
 
 // Import Third-party Dependencies
 import { request, Headers } from "@myunisoft/httpie";
