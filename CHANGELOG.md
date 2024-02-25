@@ -6,6 +6,8 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/) and this p
 
 ## [Unreleased]
 
+## [1.2.2] - 2024-02-25
+
 ### Fixed
 
 - Added missing `update-all` option
