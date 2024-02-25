@@ -6,7 +6,8 @@
 
 Update your GitHub Actions.
 
-> **Note** This tool uses pinned version only for security purpose.
+> [!IMPORTANT]
+>  This tool uses pinned version only for security purpose.
 
 ## Requirements
 - [Node.js](https://nodejs.org/en/) v18 or higher
