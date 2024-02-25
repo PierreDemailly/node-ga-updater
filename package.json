@@ -3,7 +3,7 @@
   "version": "1.2.2",
   "description": "Update GitHub Actions",
   "scripts": {
-    "lint": "eslint ./**/**.js",
+    "lint": "eslint ./**/*.mjs",
     "pkg:ok": "npx pkg-ok"
   },
   "main": "./bin/node-ga-updater.mjs",

@@ -1,16 +1,11 @@
-// Import Node.js Dependencies
-import fs from "node:fs";
-import path from "node:path";
-
-// Import Third-party Dependencies
-import { walkSync } from "@nodesecure/fs-walk";
-
 export function parseGitHubActions(workflowsFilesLines) {
+  const githubActions = new Map();
+
   if (workflowsFilesLines.length === 0) {
     console.log("No workflow found");
-  }
 
-  const githubActions = new Map();
+    return githubActions;
+  }
 
   for (const [absolutePath, lines] of workflowsFilesLines) {
     const linesWithGitHubAction = lines

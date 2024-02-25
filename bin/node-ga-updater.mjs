@@ -57,8 +57,7 @@ const { values: kArgv } = parseArgs({
     }
   }
 });
-const shouldCommit = kArgv.commit || kArgv.c;
-if (kArgv.s || kArgv.silent) {
+if (kArgv.silent) {
   console.log = () => void 0;
 }
 
@@ -84,9 +83,10 @@ const workflowsFilesLines = workflowsFilesPath.map(([, absolutePath]) => {
   return [absolutePath, lines];
 });
 
-hr();
-
 const projectGitHubActions = parseGitHubActions(workflowsFilesLines);
+if (projectGitHubActions.size > 0) {
+  hr();
+}
 
 for (const [ga, usage] of projectGitHubActions) {
   // format foo/bar/baz -> foo/bar
