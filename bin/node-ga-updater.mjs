@@ -30,6 +30,11 @@ const kFetchedTags = new Map();
 const { values: kArgv } = parseArgs({
   args: process.argv.slice(2),
   options: {
+    "update-all": {
+      type: "boolean",
+      short: "u",
+      default: false
+    },
     path: {
       type: "string",
       short: "p",
