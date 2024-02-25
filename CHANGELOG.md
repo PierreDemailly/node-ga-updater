@@ -6,6 +6,10 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/) and this p
 
 ## [Unreleased]
 
+### Fixed
+
+- Added missing `update-all` option
+
 ## [1.2.1] - 2024-02-24
 
 ### Fixed
