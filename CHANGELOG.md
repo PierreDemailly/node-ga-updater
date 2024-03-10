@@ -6,6 +6,8 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/) and this p
 
 ## [Unreleased]
 
+## [1.2.3] - 2024-03-10
+
 ### Fixed
 
 - Fixed an auto-commit bug caused by `@pierred/node-git`
