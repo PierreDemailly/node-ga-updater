@@ -22,11 +22,13 @@ import { parseGitHubActions } from "../src/parseGitHubActions.mjs";
 const kGitHubApiUrl = "https://api.github.com";
 const kRequestOptions = {
   headers: new Headers({
-    "X-GitHub-Api-Version": "2022-11-28"
+    "X-GitHub-Api-Version": "2022-11-28",
+    "user-agent": "node-ga-updater"
   }),
   authorization: process.env.GITHUB_TOKEN
 };
 const kFetchedTags = new Map();
+const kBaseChangesCount = await git.changesCount();
 const { values: kArgv } = parseArgs({
   args: process.argv.slice(2),
   options: {
@@ -140,10 +142,21 @@ for (const [ga, usage] of projectGitHubActions) {
   hr();
 }
 
-if (kArgv.commit) {
+const changesCount = await git.changesCount();
+commit: if (kArgv.commit) {
+  if (kBaseChangesCount > 0) {
+    console.log(kleur.yellow().bold(`Repository not clean, cannot commit.`));
+    break commit;
+  }
+  else if (changesCount === 0) {
+    console.log(kleur.yellow().bold("No changes detected, cannot commit."));
+    break commit;
+  }
+
   await git.indexAllCurrentDirectory();
   await git.commit(kArgv.message);
 }
+
 console.log("Done!");
 
 function hr() {
